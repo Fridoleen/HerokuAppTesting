@@ -20,8 +20,6 @@ namespace HerokuAppTesting
 
         [Test]
         [AllureStep("Step One")]
-
-        //[AllureAttachment]
         public void GreetUser()
         {
             Console.WriteLine("What's your bidding, master? There must be a screenshot of");
@@ -32,7 +30,7 @@ namespace HerokuAppTesting
         public void TestCaseOne()
         {
             DriverHelper.InitializeChrome("https://the-internet.herokuapp.com/login");
-            var loginPage = new LoginPage(DriverHelper.Driver);
+            LoginPage loginPage = new LoginPage(DriverHelper.Driver);
             loginPage.loginUser("tomsmith", "SuperSecretPassword!");
 
             var secureAreaPage = new SecureAreaPage(DriverHelper.Driver);
