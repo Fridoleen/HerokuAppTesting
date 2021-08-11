@@ -20,6 +20,8 @@ namespace HerokuAppTesting
 
         [Test]
         [AllureStep("Step One")]
+
+        //[AllureAttachment]
         public void GreetUser()
         {
             Console.WriteLine("What's your bidding, master? There must be a screenshot of");

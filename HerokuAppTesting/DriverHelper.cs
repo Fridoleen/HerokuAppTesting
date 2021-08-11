@@ -19,7 +19,7 @@ namespace HerokuAppTesting
             Driver.Navigate().GoToUrl(url);
         }
 
-        public static void MakeScreenShotPng(string name = "NewScreenshot") //check for name conflict, or provide additional data
+        public static void MakeScreenShotPng(string name = "NewScreenshot") //check for file name conflict, or provide additional data to customize filename
         {
             Screenshot screenshot = (Driver as ITakesScreenshot).GetScreenshot();
             screenshot.SaveAsFile(name + ".png", ScreenshotImageFormat.Png);
