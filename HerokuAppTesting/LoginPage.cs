@@ -6,21 +6,23 @@ namespace HerokuAppTesting
     {
         protected IWebDriver driver;
        
-        private By usernameBy = By.Name("username");
-        private By passwordBy = By.Name("password");
-        private By submitButtonBy = By.ClassName("radius"); //Bad selector => specify it properly!!
+        public By usernameBy { get => By.Name("username"); }
+        public By passwordBy { get => By.Name("password"); }
+        public By submitButtonBy { get => By.ClassName("radius"); } //Is this a good locator?
 
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public SecureAreaPage loginUser(string userName, string password)
+        public void loginUser(string userName, string password)
         {
             driver.FindElement(usernameBy).SendKeys(userName);
             driver.FindElement(passwordBy).SendKeys(password);
             driver.FindElement(submitButtonBy).Click();
-            return new SecureAreaPage(driver);
+
+                                        //Is this optimal, or just pass url or what?
+            DriverHelper.Driver = driver; 
         }
 
     }

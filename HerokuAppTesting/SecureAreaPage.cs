@@ -7,9 +7,7 @@ namespace HerokuAppTesting
     {
         protected IWebDriver driver;
 
-        public By flashMessageBy { get => By.ClassName("flash success"); } 
-
-        //private By flashMessageBy = By.ClassName("flash success");//!!!!!!!
+        public By flashMessageBy { get => By.ClassName("flash success"); }
 
         public SecureAreaPage(IWebDriver driver)
         {
@@ -21,6 +19,7 @@ namespace HerokuAppTesting
 
         public string getMessageText() => driver.FindElement(flashMessageBy).Text;
 
+        //What is this for?
         public SecureAreaPage managePage()
         {
             return new SecureAreaPage(driver);
