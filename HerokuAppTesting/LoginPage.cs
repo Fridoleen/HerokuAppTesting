@@ -19,9 +19,9 @@ namespace HerokuAppTesting
         {
             this.driver = driver;
 
-            this.userName = DriverHelper.Driver.FindElement(usernameBy);
-            this.password = DriverHelper.Driver.FindElement(passwordBy);
-            this.submitButton = DriverHelper.Driver.FindElement(submitButtonBy);
+            this.userName = driver.FindElement(usernameBy);
+            this.password = driver.FindElement(passwordBy);
+            this.submitButton = driver.FindElement(submitButtonBy);
         }
 
         public void loginUser(string userName, string password)

@@ -17,6 +17,8 @@ namespace HerokuAppTesting
         {
             var Driver = new ChromeDriver();
             Driver.Navigate().GoToUrl(url);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            DriverHelper.Driver = Driver;
         }
 
         public static byte[] GetScreenShot() //check for file name conflict, or provide additional data to customize filename
@@ -26,16 +28,16 @@ namespace HerokuAppTesting
         }
 
         public static void LogIn(string name, string pass)
-        {
-            if (Driver == null) Console.WriteLine("All got bad");
-            Driver.Close();
+        {            
             var loggerPage = new LoginPage(Driver);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             loggerPage.loginUser(name, pass);
         }
 
         public static string GetText()
         {
             var securePage = new SecureAreaPage(Driver);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             return securePage.getMessageText();
         }
 

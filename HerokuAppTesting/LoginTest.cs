@@ -32,6 +32,7 @@ namespace HerokuAppTesting
             //string path = "";
             //AllureLifecycle.Instance.AddAttachment("Login screenshot", path, DriverHelper.GetScreenShot, "image/jpg")
             DriverHelper.InitializeChrome("https://the-internet.herokuapp.com/login");
+            if (DriverHelper.Driver == null) Console.WriteLine("something ominous is happening");
             DriverHelper.LogIn("tomsmith", "SuperSecretPassword!");
                         
             string text = "You logged into a secure area!";

@@ -9,7 +9,7 @@ namespace HerokuAppTesting
 
         private IWebElement successMessage;
 
-        public By flashMessageBy { get => By.ClassName("flash success"); }
+        public By flashMessageBy { get => By.Id("flash"); }
 
         public SecureAreaPage(IWebDriver driver)
         {
@@ -19,7 +19,7 @@ namespace HerokuAppTesting
                 throw new Exception("Wrong url, must be SecureArea, but it's: " + driver.Url);
             //Probably excessive, or need to catch Exception later in driver or test
 
-            successMessage = driver.FindElement(By.ClassName("flash success"));
+            successMessage = driver.FindElement(flashMessageBy);
         }
 
         public string getMessageText() => successMessage.Text;
