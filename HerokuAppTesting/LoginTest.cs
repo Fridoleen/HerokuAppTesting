@@ -29,13 +29,18 @@ namespace HerokuAppTesting
         [AllureStep("Test LigIn")]
         public void TestCaseOne()
         {
+            //string path = "";
+            //AllureLifecycle.Instance.AddAttachment("Login screenshot", path, DriverHelper.GetScreenShot, "image/jpg")
             DriverHelper.InitializeChrome("https://the-internet.herokuapp.com/login");
-            LoginPage loginPage = new LoginPage(DriverHelper.Driver);
-            loginPage.loginUser("tomsmith", "SuperSecretPassword!");
-
-            var secureAreaPage = new SecureAreaPage(DriverHelper.Driver);
+            DriverHelper.LogIn("tomsmith", "SuperSecretPassword!");
+                        
             string text = "You logged into a secure area!";
-            Assert.AreEqual(secureAreaPage.getMessageText().Contains(text), true);
+            Assert.AreEqual(DriverHelper.GetText().Contains(text), true);
+        }
+
+        public void CloseDriver()
+        {
+            DriverHelper.TearDown();
         }
     }
 }

@@ -7,28 +7,35 @@ namespace HerokuAppTesting
     {
         protected IWebDriver driver;
 
-        public By usernameBy { get => By.Id("username"); }
-        public By passwordBy { get => By.Id("password"); }
-        public By submitButtonBy { get => By.ClassName("radius"); } //Is this a good locator?
+        private IWebElement userName;
+        private IWebElement password;
+        private IWebElement submitButton;
 
-        //private By usernameBy = By.Id("username");
-        //private By passwordBy = By.Id("password");
-        //private By submitButtonBy = By.ClassName("radius");
+        public By usernameBy { get => By.Name("username"); }
+        public By passwordBy { get => By.Name("password"); }
+        public By submitButtonBy { get => By.ClassName("radius"); } //Is this a good locator?
 
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
+
+            this.userName = DriverHelper.Driver.FindElement(usernameBy);
+            this.password = DriverHelper.Driver.FindElement(passwordBy);
+            this.submitButton = DriverHelper.Driver.FindElement(submitButtonBy);
         }
 
         public void loginUser(string userName, string password)
         {
-            if (driver.FindElement(usernameBy) == null) Console.WriteLine("did not find element 'usernameBy'");
-            driver.FindElement(usernameBy).SendKeys(userName);
-            driver.FindElement(passwordBy).SendKeys(password);
-            driver.FindElement(submitButtonBy).Click();
+            this.userName.Clear();
+            this.userName.SendKeys(userName);
 
-                                        //Is this optimal, or just pass url or what?
-            DriverHelper.Driver = driver; 
+            this.password.Clear();
+            this.password.SendKeys(password);
+
+            this.submitButton.Click();
+
+            //Is this optimal, or just pass url or what?
+            //DriverHelper.Driver = driver; 
         }
 
     }

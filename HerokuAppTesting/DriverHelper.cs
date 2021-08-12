@@ -19,10 +19,29 @@ namespace HerokuAppTesting
             Driver.Navigate().GoToUrl(url);
         }
 
-        public static void MakeScreenShotPng(string name = "NewScreenshot") //check for file name conflict, or provide additional data to customize filename
+        public static byte[] GetScreenShot() //check for file name conflict, or provide additional data to customize filename
         {
             Screenshot screenshot = (Driver as ITakesScreenshot).GetScreenshot();
-            screenshot.SaveAsFile(name + ".png", ScreenshotImageFormat.Png);
+            return screenshot.AsByteArray;
+        }
+
+        public static void LogIn(string name, string pass)
+        {
+            if (Driver == null) Console.WriteLine("All got bad");
+            Driver.Close();
+            var loggerPage = new LoginPage(Driver);
+            loggerPage.loginUser(name, pass);
+        }
+
+        public static string GetText()
+        {
+            var securePage = new SecureAreaPage(Driver);
+            return securePage.getMessageText();
+        }
+
+        public static void TearDown()
+        {
+            Driver.Close();
         }
 
     }
