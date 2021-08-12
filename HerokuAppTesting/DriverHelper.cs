@@ -23,7 +23,8 @@ namespace HerokuAppTesting
 
         public static byte[] GetScreenShot() //check for file name conflict, or provide additional data to customize filename
         {
-            Screenshot screenshot = (Driver as ITakesScreenshot).GetScreenshot();
+            var temp = (Driver as ITakesScreenshot);
+            var screenshot = temp.GetScreenshot();
             return screenshot.AsByteArray;
         }
 
@@ -43,6 +44,7 @@ namespace HerokuAppTesting
 
         public static void TearDown()
         {
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             Driver.Close();
         }
 
