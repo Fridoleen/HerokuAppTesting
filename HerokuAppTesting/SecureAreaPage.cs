@@ -15,10 +15,6 @@ namespace HerokuAppTesting
         {
             this.driver = driver;
 
-            if (!driver.Title.Contains("The Internet"))
-                throw new Exception("Wrong url, must be SecureArea, but it's: " + driver.Url);
-            //Probably excessive, or need to catch Exception later in driver or test
-
             successMessage = driver.FindElement(flashMessageBy);
         }
 

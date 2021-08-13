@@ -13,7 +13,7 @@ namespace HerokuAppTesting
 
         public By usernameBy { get => By.Name("username"); }
         public By passwordBy { get => By.Name("password"); }
-        public By submitButtonBy { get => By.ClassName("radius"); } //Is this a good locator?
+        public By submitButtonBy { get => By.ClassName("radius"); } 
 
         public LoginPage(IWebDriver driver)
         {
@@ -33,9 +33,6 @@ namespace HerokuAppTesting
             this.password.SendKeys(password);
 
             this.submitButton.Click();
-
-            //Is this optimal, or just pass url or what?
-            //DriverHelper.Driver = driver; 
         }
 
     }

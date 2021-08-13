@@ -18,30 +18,34 @@ namespace HerokuAppTesting
             AllureLifecycle.Instance.CleanupResultDirectory();
         }
 
-        //[Test]
-        //[AllureStep("Step One")]
-        //public void GreetUser()
-        //{
-        //    Console.WriteLine("What's your bidding, master? There must be a screenshot of");
-        //}
+        [Test]
+        [AllureStep("Step One")]
+        public void GreetUser()
+        {
+            Console.WriteLine("What's your bidding, master?");
+            DriverHelper.InitializeChrome("https://the-internet.herokuapp.com/login");
+        }
 
         [Test]
         [AllureStep("Test LigIn")]
         public void TestCaseOne()
         {
-            DriverHelper.InitializeChrome("https://the-internet.herokuapp.com/login");
-
             DriverHelper.LogIn("tomsmith", "SuperSecretPassword!");
 
             string text = "You logged into a secure area!";
             Assert.AreEqual(DriverHelper.GetText().Contains(text), true);
         }
+        [Test]
+        [AllureStep("Finish")]
+        public void CloseUp()
+        {
+            Console.WriteLine("We're done here");
+        }
 
         [TearDown]
         public void AddAttachment()
         {
-            AllureLifecycle.Instance.AddAttachment("TearDown", "image/png", DriverHelper.GetScreenShot(), @"screen.png");
-            if (DriverHelper.Driver != null) DriverHelper.TearDown();
+            if(DriverHelper.Driver != null) AllureLifecycle.Instance.AddAttachment("TearDown", "image/png", DriverHelper.GetScreenShot(), @"screen.png");
         }
     }
 }
